@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+    <id>distribution</id>
+    <formats>
+        <format>zip</format>
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/src/main/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>*.bat</include>
+            </includes>
+            <lineEnding>dos</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/src/main/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>*.sh</include>
+            </includes>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/src/main/doc</directory>
+            <outputDirectory>docs</outputDirectory>
+            <includes>
+                <include>*.doc</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/src/main/resourcezz/conf</directory>
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+                <include>adapter.conf</include>
+                <include>log4j.xml</include>
+                <include>*.cfg</include>
+                <include>etc/*</include>
+                <include>ssl/*</include>
+                <include>test/*</include>
+            </includes>
+            <lineEnding>dos</lineEnding>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <scope>runtime</scope>
+            <outputDirectory>lib</outputDirectory>
+                        <useProjectArtifact>true</useProjectArtifact>
+            <unpack>false</unpack>
+        </dependencySet>
+    </dependencySets>
+</assembly>

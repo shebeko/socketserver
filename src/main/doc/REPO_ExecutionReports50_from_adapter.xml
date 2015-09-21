@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Envelope>
+    <ExecutionReports>
+        <ExecutionReport>
+            <Account>1023905245</Account>
+            <AvgPx></AvgPx>
+            <CashOrderQty></CashOrderQty>
+            <ClOrdID></ClOrdID>
+            <CumQty>0</CumQty>
+            <EndCash>13842531.52</EndCash>
+            <EndDate>2015-05-03T21:00:00-03:00</EndDate>
+            <ExecID>N/A</ExecID>
+            <ExecType>I</ExecType>
+            <LeavesQty>12</LeavesQty>
+            <OrdStatus>4</OrdStatus>
+            <OrdType>2</OrdType>
+            <OrderID>5862626</OrderID>
+            <OrderQty>12</OrderQty>
+            <Price>200.00</Price>
+            <Side>1</Side>
+            <StartDate>2015-04-05T21:00:00-03:00</StartDate>
+            <StopPx>200.00</StopPx>
+            <Symbol>R_RDGZ_028</Symbol>
+            <Text>n/a</Text>
+            <TradingSessionID></TradingSessionID>
+            <TransactTime>2015-04-06T11:37:12-03:00</TransactTime>
+            <Underlyings>
+                <Underlying>
+                    <UnderlyingQty>901.00</UnderlyingQty>
+                    <UnderlyingSymbol>RDGZ</UnderlyingSymbol>
+                </Underlying>
+            </Underlyings>
+            <yield>200.00</yield>
+        </ExecutionReport>
+    </ExecutionReports>
+</Envelope>

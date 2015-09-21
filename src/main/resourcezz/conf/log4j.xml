@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+    <appender name="File" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="logs/kase-adapter.log" />
+        <param name="maxBackupIndex" value="5" />
+        <param name="maxFileSize" value="10MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} LOG %t %p %c: %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="HeartbeatFile" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="logs/heartbeat.log" />
+        <param name="maxBackupIndex" value="5" />
+        <param name="maxFileSize" value="10MB" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} LOG  %p %c: %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+        <param name="target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} LOG %p %c: %m%n" />
+        </layout>
+    </appender>
+    <logger name="org.springframework">
+        <level value="warn" />
+    </logger>
+    <logger name="ru.bis.integration">
+        <level value="debug" />
+    </logger>
+    <logger name="ru.bis.heartbeat" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="HeartbeatFile"/>
+    </logger>
+    <root>
+        <level value="debug" />
+        <appender-ref ref="Console" />
+        <appender-ref ref="File" />
+    </root>
+</log4j:configuration>

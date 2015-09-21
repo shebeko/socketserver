@@ -1,0 +1,6 @@
+.svn/
+.idea/
+kase-adapter.iml
+target/
+/**/*/doc/*
+

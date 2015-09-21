@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans.xsd
+                                 http://www.springframework.org/schema/integration
+                                 http://www.springframework.org/schema/integration/spring-integration-3.0.xsd
+                                 http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+    <int:channel id="documentInputChannel">
+        <int:queue capacity="100"/>
+    </int:channel>
+
+    <int:channel id="routingChannel"/>
+    <int:channel id="executionReports"/>
+    <int:channel id="marketData"/>
+    <int:channel id="marshallingChannel"/>
+    <int:channel id="documentOutputChannel"/>
+
+    <int:service-activator input-channel="documentInputChannel"
+                           output-channel="routingChannel" ref="unmarshallingService"
+                           method="service">
+        <int:poller fixed-delay="100" time-unit="MILLISECONDS" task-executor="taskExecutor"/>
+    </int:service-activator>
+
+    <int:router ref="requestRouter" input-channel="routingChannel" method="processRequest"/>
+
+    <int:service-activator input-channel="executionReports"
+                           output-channel="documentOutputChannel" ref="executionReportsProcessor"
+                           method="service"/>
+
+    <int:service-activator input-channel="marketData"
+                           output-channel="documentOutputChannel" ref="marketDataProcessor"
+                           method="service"/>
+
+    <int:service-activator input-channel="documentOutputChannel" ref="socketSenderService" method="send"/>
+
+    <task:executor id="taskExecutor" pool-size="50" keep-alive="120"/>
+</beans>
